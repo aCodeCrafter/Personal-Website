@@ -6,7 +6,33 @@
   <body>
     <h1>Liam Callahan</h1>
     <h3>Computer Science Student</h3>
-    <h2>US Citizen | <a href="mailto:me@acodecrafter.com">me@acodecrafter.com</a> |
+    <h2>US Citizen | <a href="mailto:me@acodecrafter.com">me@acodecrafter.com</a></h2>
+
+    <div class="expandable">
+      <button class="toggle-button">Projects</button>
+      <div class="content">
+        <h3>Project #1</h3>
+        <h3>Project #2</h3>
+        <h3>Project #3</h3>
+      </div>
+    </div>
     
+    <div class="expandable">
+      <button class="toggle-button">Projects</button>
+      <div class="content">
+        <h3>Project #1</h3>
+        <h3>Project #2</h3>
+        <h3>Project #3</h3>
+      </div>
+    </div>
+
+    <script>
+      var list = document.getElementsByClassName("expandable");
+      for (var i = 0; i < list.length; i++) {
+        list[i].addEventListener('click', (e) => {
+          e.target.nextElementSibling.classList.toggle("visible");
+        });
+      }
+    </script>
   </body>
 </html>
