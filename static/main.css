@@ -1,7 +1,12 @@
+:root {
+  --main-fg-color: rgb(233, 233, 233);
+  --main-width: 550pt;
+}
+
 body {
   text-align: center;
   font-family: 'Courier New', Courier, monospace;
-  color: rgb(233, 233, 233);
+  color: var(--main-fg-color);
   background-color: #000108;
 }
 
@@ -9,11 +14,28 @@ a {
   color: #45ff6d;
 }
 
+.profile-img {
+  width: 160pt;
+  height: 180pt;
+  border-radius: 200px;
+}
+
+h3 {
+  width: 70%;
+  margin: 10pt auto;
+}
+
+.expandable {
+  padding-bottom: 10pt;
+}
+
 .expandable .content {
-  display: block;
+  display: hidden;
   overflow: hidden;
   opacity: 0;
   height: 0pt;
+  width: var(--main-width);
+  margin: 0 auto;
   transition: all, 0.3s;
 }
 
@@ -24,11 +46,13 @@ a {
 
 .toggle-button {
   padding: -10pt;
-  width: 260pt;
+  width: var(--main-width);
   background-color: transparent;
   font-size: 20pt;
   font-weight: 300;
-  color:rgb(233, 233, 233);
+  color: var(--main-fg-color);
+  border: 1px solid var(--main-fg-color);
+  border-radius: 5px;
 }
 
 .particle {

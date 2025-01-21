@@ -5,33 +5,58 @@
   </head>
   <body>
     <h1>Liam Callahan</h1>
-    <h3>Computer Science Student</h3>
-    <h2>US Citizen | <a href="mailto:me@acodecrafter.com">me@acodecrafter.com</a></h2>
+    <div class="asteroids-ship"></div>
 
+    <h3>Computer Science Student</h3>
+    <h2>US Citizen | <a href="mailto:liam@acodecrafter.xyz">liam@acodecrafter.xyz</a></h2>
+
+    <!-- Intro -->
+     <img src="../static/profile.png" class="profile-img">
+     <h3>I'm Liam Callahan, a computer science student and up-and-coming full-stack engineer.</h3>
+     
     <div class="expandable">
-      <button class="toggle-button">Projects</button>
+      <button class="toggle-button">Django CRM</button>
       <div class="content">
         <h3>Project #1</h3>
         <h3>Project #2</h3>
         <h3>Project #3</h3>
       </div>
     </div>
-    
+
     <div class="expandable">
-      <button class="toggle-button">Experience</button>
+      <button class="toggle-button">Python Blog Migration Tool</button>
       <div class="content">
-        <h3>Project #1</h3>
-        <h3>Project #2</h3>
-        <h3>Project #3</h3>
+        <p>Developed a program in Python that scraped Weebly Blog content and converted it to
+          WordPress posts via the WordPress REST API. This eliminated ~90% of the repetitive
+          labor needed to transfer the posts</p>
+      </div>
+    </div>
+
+    <div class="expandable">
+      <button class="toggle-button">Python Blog Migration Tool</button>
+      <div class="content">
+        <p>Developed a program in Python that scraped Weebly Blog content and converted it to
+          WordPress posts via the WordPress REST API. This eliminated ~90% of the repetitive
+          labor needed to transfer the posts</p>
+      </div>
+    </div>
+
+    <div class="expandable">
+      <button class="toggle-button">Blog</button>
+      <div class="content">
+        <p>Developed a program in Python that scraped Weebly Blog content and converted it to
+          WordPress posts via the WordPress REST API. This eliminated ~90% of the repetitive
+          labor needed to transfer the posts</p>
       </div>
     </div>
 
     <div class="particles"></div>
     <script>
+      // Add listeners for expandable clicks
       var list = document.getElementsByClassName("expandable");
       for (var i = 0; i < list.length; i++) {
         list[i].addEventListener('click', (e) => {
-          e.target.nextElementSibling.classList.toggle("visible");
+          e.target.parentElement.querySelector('.content').classList.toggle('visible');
         });
       }
 
