@@ -25,6 +25,18 @@ h3 {
   margin: 10pt auto;
 }
 
+.languages {
+  display: flex;
+  gap: 10pt;
+  justify-content: center;
+}
+
+.language-box {
+  border: 1px solid var(--main-fg-color);
+  border-radius: 5px;
+  padding: 10pt;
+}
+
 .expandable {
   padding-bottom: 10pt;
 }
@@ -53,6 +65,27 @@ h3 {
   color: var(--main-fg-color);
   border: 1px solid var(--main-fg-color);
   border-radius: 5px;
+}
+
+.blog-container {
+  flex-direction: column;
+  display: flex;
+  gap: 10pt;
+}
+
+.blog-excerpt {
+  width: var(--main-width);
+  padding-top: 5pt;
+  background-color: transparent;
+  color: var(--main-fg-color);
+  border: 1px solid var(--main-fg-color);
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+.blog-excerpt .title {
+  font-size: 20pt;
+  font-weight: 300;
 }
 
 .particle {

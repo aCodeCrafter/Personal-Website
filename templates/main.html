@@ -2,18 +2,31 @@
 <html>
   <head>
     <link rel="stylesheet" href="../static/main.css">
+    <title>Liam Callahan</title>
   </head>
   <body>
     <h1>Liam Callahan</h1>
-    <div class="asteroids-ship"></div>
 
     <h3>Computer Science Student</h3>
     <h2>US Citizen | <a href="mailto:liam@acodecrafter.xyz">liam@acodecrafter.xyz</a></h2>
 
     <!-- Intro -->
-     <img src="../static/profile.png" class="profile-img">
-     <h3>I'm Liam Callahan, a computer science student and up-and-coming full-stack engineer.</h3>
-     
+    <img src="../static/profile.png" class="profile-img">
+    <h3>I'm Liam Callahan, a computer science student and up-and-coming full-stack engineer.</h3>
+    
+    <!-- Languages -->
+    <h2>Languages</h2>
+    <div class="languages">
+      <span class="language-box">Python</span>
+      <span class="language-box">Java</span>
+      <span class="language-box">C#</span>
+      <span class="language-box">HTML</span>
+      <span class="language-box">CSS</span>
+      <span class="language-box">JavaScript</span>
+    </div>
+
+    <!-- Projects -->
+    <h2>Projects</h2>
     <div class="expandable">
       <button class="toggle-button">Django CRM</button>
       <div class="content">
@@ -32,45 +45,38 @@
       </div>
     </div>
 
-    <div class="expandable">
-      <button class="toggle-button">Python Blog Migration Tool</button>
-      <div class="content">
-        <p>Developed a program in Python that scraped Weebly Blog content and converted it to
-          WordPress posts via the WordPress REST API. This eliminated ~90% of the repetitive
-          labor needed to transfer the posts</p>
+    <h2>Blog</h2>
+    <div class="blog-container">
+      <div class="blog-excerpt">
+        <span class="title">Blog Title</span>
+        <p class="excerpt">Really engaging blog excerpt...</p>
+      </div>
+      <div class="blog-excerpt">
+        <span class="title">Blog Title</span>
+        <p class="excerpt">Really engaging blog excerpt...</p>
+      </div>
+      <div class="blog-excerpt">
+        <span class="title">Blog Title</span>
+        <p class="excerpt">Really engaging blog excerpt...</p>
+      </div>
+      <div class="blog-excerpt">
+        <span class="title">Blog Title</span>
+        <p class="excerpt">Really engaging blog excerpt...</p>
+      </div>
+      <div class="blog-excerpt">
+        <span class="title">Blog Title</span>
+        <p class="excerpt">Really engaging blog excerpt...</p>
+      </div>
+      <div class="blog-excerpt">
+        <span class="title">Blog Title</span>
+        <p class="excerpt">Really engaging blog excerpt...</p>
       </div>
     </div>
-
-    <div class="expandable">
-      <button class="toggle-button">Blog</button>
-      <div class="content">
-        <p>Developed a program in Python that scraped Weebly Blog content and converted it to
-          WordPress posts via the WordPress REST API. This eliminated ~90% of the repetitive
-          labor needed to transfer the posts</p>
-      </div>
-    </div>
-
+    <br>
+    <a href="blog">Read More</a>
+    
     <div class="particles"></div>
-    <script>
-      // Add listeners for expandable clicks
-      var list = document.getElementsByClassName("expandable");
-      for (var i = 0; i < list.length; i++) {
-        list[i].addEventListener('click', (e) => {
-          e.target.parentElement.querySelector('.content').classList.toggle('visible');
-        });
-      }
-
-      // Create particles
-      const particlesDiv = document.querySelector('.particles');
-      for (var i = 0; i < 60; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        particle.style.left = (Math.random()*100 - 30)+"%";
-        particle.style.animationDelay = -(Math.random()*100)+"s";
-        particle.style.opacity = Math.random()+0.5;
-        particle.style.scale = Math.random()+1;
-        particlesDiv.appendChild(particle);
-      }
-    </script>
   </body>
+
+  <script rel="script" src="../static/main.js"></script> 
 </html>
