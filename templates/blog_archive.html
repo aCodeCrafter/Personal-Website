@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../static/main.css">
+    <title>Liam Callahan Blog</title>
+  </head>
+  <h1>Blog Archives</h1>
+  <body>
+    <div class="blog-container">
+      {% for post in posts %}
+      <div class="blog-excerpt">
+        <span class="title">{{ post.title }}</span>
+        <p class="excerpt">{{ post.excerpt }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="particles"></div>
+    <script src="../static/main.js"></script>
+  </body>
+</html>
