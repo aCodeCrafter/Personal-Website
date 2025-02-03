@@ -3,12 +3,12 @@
   <head>
     <link rel="stylesheet" href="../static/main.css">
     <title>Liam Callahan</title>
+    <h1>Liam Callahan</h1>
+    <h3>Computer Science Student</h3>
+    
   </head>
   <body>
-    <h1>Liam Callahan</h1>
-
-    <h3>Computer Science Student</h3>
-    <h2>US Citizen | <a href="mailto:liam@acodecrafter.xyz">liam@acodecrafter.xyz</a></h2>
+    <h2><a href="mailto:liam@acodecrafter.xyz">liam@acodecrafter.xyz</a></h2>
 
     <!-- Intro -->
     <img src="../static/profile.png" class="profile-img">
@@ -46,33 +46,15 @@
 
     <h2>Recent Blog Posts</h2>
     <div class="blog-container">
-      <div class="blog-excerpt">
-        <span class="title">Blog Title</span>
-        <p class="excerpt">Really engaging blog excerpt...</p>
-      </div>
-      <div class="blog-excerpt">
-        <span class="title">Blog Title</span>
-        <p class="excerpt">Really engaging blog excerpt...</p>
-      </div>
-      <div class="blog-excerpt">
-        <span class="title">Blog Title</span>
-        <p class="excerpt">Really engaging blog excerpt...</p>
-      </div>
-      <div class="blog-excerpt">
-        <span class="title">Blog Title</span>
-        <p class="excerpt">Really engaging blog excerpt...</p>
-      </div>
-      <div class="blog-excerpt">
-        <span class="title">Blog Title</span>
-        <p class="excerpt">Really engaging blog excerpt...</p>
-      </div>
-      <div class="blog-excerpt">
-        <span class="title">Blog Title</span>
-        <p class="excerpt">Really engaging blog excerpt...</p>
-      </div>
+      {% for post in posts %}
+      <a class="blog-excerpt" href="/blog/id-{{ post.id }}">
+        <span class="title">{{ post.title }}</span>
+        <p class="excerpt">{{ post.excerpt }}</p>
+      </a>
+      {% endfor %}
     </div>
     <br>
-    <a href="blog">Read More</a>
+    <a href="blog-archive/page-1">Read More</a>
     
     <div class="particles"></div>
   </body>

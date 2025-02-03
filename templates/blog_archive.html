@@ -3,17 +3,23 @@
   <head>
     <link rel="stylesheet" href="../static/main.css">
     <title>Liam Callahan Blog</title>
+
   </head>
-  <h1>Blog Archives</h1>
   <body>
+    {% include "navbar.html" %}
     <div class="blog-container">
       {% for post in posts %}
-      <div class="blog-excerpt">
+      <a class="blog-excerpt" href="/blog/id-{{ post.id }}">
         <span class="title">{{ post.title }}</span>
         <p class="excerpt">{{ post.excerpt }}</p>
-      </div>
+      </a>
       {% endfor %}
     </div>
+    <br>
+    {% if (prev > 0) %}
+    <a href="/blog-archive/page-{{ prev }}">Previous</a>
+    {% endif %}
+    <a href="/blog-archive/page-{{ next }}">Next</a>
     <div class="particles"></div>
     <script src="../static/main.js"></script>
   </body>

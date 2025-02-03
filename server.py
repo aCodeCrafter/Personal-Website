@@ -6,12 +6,22 @@ app = Flask(__name__)
 # Define main page route
 @app.route("/")
 def main_page():
-  return render_template("main.html")
+  return render_template("main.html",posts=getBlogArchives(1,5))
+
+# Define route for blog archive section of website
+@app.route("/blog-archive")
+@app.route("/blog-archive/page-<page>")
+def blog_archive(page=1):
+  page = int(page)
+  return render_template("blog_archive.html",posts=getBlogArchives(page,10),next=page+1,prev=page-1)
 
 # Define route for blog section of website
-@app.route("/blog-archive-<page>")
-def blog_page(page):
-  return render_template("blog_archive.html",posts=getBlogArchives(page))
+@app.route("/blog")
+@app.route("/blog/id-<postId>")
+def blog_post(postId=1):
+  postId = int(postId)
+  return render_template("blog.html",post=getBlog(postId))
+
 
 # TODO ADD /rss endpoint
 
@@ -43,13 +53,16 @@ def blog_page(page):
 #       "content":output[4]}
 
 # Return dict for multiple blog posts titles, authors, and excerpts
-def getBlogArchives(page):
+def getBlogArchives(page, numPerPage):
+  assert isinstance(page, int)
+  assert isinstance(numPerPage, int)
+
   #Open DB
   c = sqlite3.connect('webdata.db') 
 
   #Query database for post with id
   cursor = c.cursor()
-  cursor.execute('SELECT id, date, title, author, excerpt FROM blog WHERE id < ? AND id >= ?',[int(page)*20,(int(page)-1)*20]) 
+  cursor.execute('SELECT id, date, title, author, excerpt FROM blog WHERE id < ? AND id >= ?',[page*numPerPage,(page-1)*numPerPage]) 
   result = cursor.fetchall()
   c.commit()
   c.close() 
@@ -65,3 +78,24 @@ def getBlogArchives(page):
         "author":row[3],
         "excerpt":row[4]})
   return output
+
+def getBlog(pageId):
+  assert isinstance(pageId, int)
+
+  #Open DB
+  c = sqlite3.connect('webdata.db') 
+
+  #Query database for post with id
+  cursor = c.cursor()
+  cursor.execute('SELECT id, date, title, author, content FROM blog WHERE id = ?',[pageId]) 
+  result = cursor.fetchone()
+  c.commit()
+  c.close() 
+
+  # Format results from sql
+  return {
+        "id":result[0],
+        "date":result[1],
+        "title":result[2],
+        "author":result[3],
+        "content":result[4]}

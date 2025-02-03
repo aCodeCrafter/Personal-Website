@@ -1,6 +1,9 @@
 :root {
   --main-fg-color: rgb(233, 233, 233);
-  --main-width: 550pt;
+  --main-hover-color: #ffffff1e;
+  --main-width: 60%;
+  /* --max-width: 20pt;
+  --min-width: 33% */
 }
 
 body {
@@ -14,73 +17,98 @@ a {
   color: #45ff6d;
 }
 
+.nav-bar {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  padding: 1em;
+}
+.nav-button {
+  width: 20em;
+  padding: 1em;
+  background-color: transparent;
+  /* color: var(--main-fg-color); */
+  border: 1px solid var(--main-fg-color);
+  border-radius: 5px;
+  /* text-decoration: none; */
+  font-weight: 1000;
+}
+
 .profile-img {
-  width: 160pt;
-  height: 180pt;
+  width: 13em;
+  height: 18em;
   border-radius: 200px;
 }
 
 h3 {
   width: 70%;
-  margin: 10pt auto;
+  margin: 1em auto;
 }
 
 .languages {
   display: flex;
-  gap: 10pt;
+  gap: 1em;
   justify-content: center;
 }
 
 .language-box {
   border: 1px solid var(--main-fg-color);
   border-radius: 5px;
-  padding: 10pt;
+  padding: 0.8em;
 }
 
 .expandable {
-  padding-bottom: 10pt;
+  padding-bottom: 0.8em;
 }
 
 .expandable .content {
   display: hidden;
   overflow: hidden;
   opacity: 0;
-  height: 0pt;
-  width: var(--main-width);
+  height: 0em;
   margin: 0 auto;
   transition: all, 0.3s;
+  width: var(--main-width);
 }
 
 .expandable .content.visible {
   opacity: 1;
-  height: 100pt;
+  height: 6em;
 }
 
 .toggle-button {
-  padding: -10pt;
   width: var(--main-width);
+  padding: 1em;
+  justify-content: center;
   background-color: transparent;
-  font-size: 20pt;
-  font-weight: 300;
+  font-size: 16pt;
   color: var(--main-fg-color);
   border: 1px solid var(--main-fg-color);
   border-radius: 5px;
+}
+.toggle-button:hover {
+  background-color: var(--main-hover-color)
 }
 
 .blog-container {
   flex-direction: column;
   display: flex;
-  gap: 10pt;
+  gap: 1em;
 }
 
 .blog-excerpt {
   width: var(--main-width);
-  padding-top: 5pt;
+  padding-top: 0.5em;
   background-color: transparent;
   color: var(--main-fg-color);
   border: 1px solid var(--main-fg-color);
   border-radius: 5px;
   margin: 0 auto;
+  text-decoration: none;
+}
+.blog-excerpt:hover {
+  background-color: var(--main-hover-color);
+  transition: all .1s;
 }
 
 .blog-excerpt .title {
@@ -90,13 +118,14 @@ h3 {
 
 .particle {
   position: fixed;
-  top: 10pt;
+  top: 1em;
   animation: move-particle 100s linear infinite;
   overflow: hidden;
   height: 2px;
   width: 2px;
   background-color: white;
   box-shadow: 0px 0px 5px white ;
+  z-index: -1;
 }
 
 @keyframes move-particle {
