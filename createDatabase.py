@@ -1,4 +1,5 @@
 import sqlite3
+from datetime import datetime, timedelta
 
 # Connect to an SQLite database (or create it if it doesn't exist)
 connection = sqlite3.connect('webdata.db')
@@ -18,8 +19,11 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS blog (
 
 
 # Insert TEST data
+date = datetime(2025,1,1)
+td = timedelta(days=1)
 for i in range(40):
-  cursor.execute(f'''INSERT INTO blog (title, author, excerpt, content) VALUES ("Test Blog {i}", "Liam Callahan", "Excerpt #{i}", "Now here is the content, probably stored in html")''')
+  date += td
+  cursor.execute(f'''INSERT INTO blog (date, title, author, excerpt, content) VALUES ("{date}", "Test Blog {i}", "Liam Callahan", "Excerpt #{i}", "Now here is the content, probably stored in html")''')
 
 connection.commit()
 

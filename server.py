@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 import sqlite3
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -62,7 +63,12 @@ def getBlogArchives(page, numPerPage):
 
   #Query database for post with id
   cursor = c.cursor()
-  cursor.execute('SELECT id, date, title, author, excerpt FROM blog WHERE id < ? AND id >= ?',[page*numPerPage,(page-1)*numPerPage]) 
+  cursor.execute('''SELECT id, date, title, author, excerpt
+                    FROM blog
+                    ORDER BY date DESC
+                    LIMIT ?
+                    OFFSET ?''',
+                    [numPerPage, numPerPage*(page-1)]) 
   result = cursor.fetchall()
   c.commit()
   c.close() 
@@ -73,7 +79,7 @@ def getBlogArchives(page, numPerPage):
     if not row is None:
       output.append({
         "id":row[0],
-        "date":row[1],
+        "date":datetime.strptime(row[1], "%Y-%m-%d %H:%M:%S").strftime("%b %d, %Y"),
         "title":row[2],
         "author":row[3],
         "excerpt":row[4]})

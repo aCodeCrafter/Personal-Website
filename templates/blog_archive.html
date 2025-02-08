@@ -10,7 +10,8 @@
     <div class="blog-container">
       {% for post in posts %}
       <a class="blog-excerpt" href="/blog/id-{{ post.id }}">
-        <span class="title">{{ post.title }}</span>
+        <span class="title">{{ post.title }}</span><br>
+        <span>{{ post.date }}</span>
         <p class="excerpt">{{ post.excerpt }}</p>
       </a>
       {% endfor %}

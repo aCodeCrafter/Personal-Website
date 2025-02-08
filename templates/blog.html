@@ -6,7 +6,8 @@
   </head>
   {% include "navbar.html" %}
   <h1>{{ post.title }}</h1>
-  <h3>By {{ post.author }}</h3>
+  <h3>By {{ post.author }}</h3><br>
+  <span>{{ post.date }}</span>
   <body>
     {{ post.content }}
     <br>

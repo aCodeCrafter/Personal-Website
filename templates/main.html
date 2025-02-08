@@ -2,8 +2,8 @@
 <html>
   <head>
     <link rel="stylesheet" href="../static/main.css">
-    <title>Liam Callahan</title>
-    <h1>Liam Callahan</h1>
+    <title>Liam Callahan Portfolio</title>
+    <h1>Liam Callahan Portfolio</h1>
     <h3>Computer Science Student</h3>
     
   </head>
@@ -48,7 +48,8 @@
     <div class="blog-container">
       {% for post in posts %}
       <a class="blog-excerpt" href="/blog/id-{{ post.id }}">
-        <span class="title">{{ post.title }}</span>
+        <span class="title">{{ post.title }}</span><br>
+        <span>{{ post.date }}</span>
         <p class="excerpt">{{ post.excerpt }}</p>
       </a>
       {% endfor %}
