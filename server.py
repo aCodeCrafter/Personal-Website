@@ -105,3 +105,6 @@ def getBlog(pageId):
         "title":result[2],
         "author":result[3],
         "content":result[4]}
+
+if __name__ == "__main__":
+  app.run(host="0.0.0.0")

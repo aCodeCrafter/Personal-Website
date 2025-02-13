@@ -19,11 +19,11 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS blog (
 
 
 # Insert TEST data
-date = datetime(2025,1,1)
-td = timedelta(days=1)
-for i in range(40):
-  date += td
-  cursor.execute(f'''INSERT INTO blog (date, title, author, excerpt, content) VALUES ("{date}", "Test Blog {i}", "Liam Callahan", "Excerpt #{i}", "Now here is the content, probably stored in html")''')
+# date = datetime(2025,1,1)
+# td = timedelta(days=1)
+# for i in range(40):
+#   date += td
+#   cursor.execute(f'''INSERT INTO blog (date, title, author, excerpt, content) VALUES ("{date}", "Test Blog {i}", "Liam Callahan", "Excerpt #{i}", "Now here is the content, probably stored in html")''')
 
 connection.commit()
 
