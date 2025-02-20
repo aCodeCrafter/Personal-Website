@@ -7,7 +7,7 @@
 }
 @media (max-width: 735pt) {
   :root {
-    --main-width: 95%;
+    --main-width: 90%;
     font-size: 1.6em;
   }
 }
