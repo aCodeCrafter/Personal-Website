@@ -24,35 +24,6 @@ def blog_post(postId=1):
   return render_template("blog.html",post=getBlog(postId))
 
 
-# TODO ADD /rss endpoint
-
-# Return dict containing blog post metadata and content. If entry is not found,
-# return a dict with the same structure, but populated with None type
-# @app.route("/blog-json-<id>")
-# def getBlogPost(id):
-#   #Open DB
-#   c = sqlite3.connect('webdata.db') 
-
-#   #Query database for post with id
-#   cursor = c.cursor()
-#   cursor.execute('SELECT * FROM blog WHERE id = ?',id) 
-#   output = cursor.fetchone()
-#   c.close() 
-#   if (output is None):
-#     return {
-#       "id":None,
-#       "date":None,
-#       "title":None,
-#       "author":None,
-#       "content":None}
-#   else:
-#     return {
-#       "id":output[0],
-#       "date":output[1],
-#       "title":output[2],
-#       "author":output[3],
-#       "content":output[4]}
-
 # Return dict for multiple blog posts titles, authors, and excerpts
 def getBlogArchives(page, numPerPage):
   assert isinstance(page, int)
@@ -101,10 +72,9 @@ def getBlog(pageId):
   # Format results from sql
   return {
         "id":result[0],
-        "date":result[1],
+        "date":datetime.strptime(result[1], "%Y-%m-%d %H:%M:%S").strftime("%b %d, %Y"),
         "title":result[2],
         "author":result[3],
         "content":result[4]}
-
 if __name__ == "__main__":
   app.run(host="0.0.0.0")

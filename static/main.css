@@ -51,6 +51,11 @@ h3 {
   margin: 1em auto;
 }
 
+h4 {
+  padding-bottom: 1em;
+  font-weight: 500;
+}
+
 .languages {
   display: flex;
   gap: 1em;
