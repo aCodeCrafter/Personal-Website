@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../static/main.css">
+    <title>Liam Callahan Portfolio</title>
+    <h1>Liam Callahan Portfolio</h1>
+    <h3>Computer Science Student</h3>
+    
+  </head>
+  <body>
+    <h2><a href="mailto:liam@acodecrafter.xyz">liam@acodecrafter.xyz</a></h2>
+
+    <!-- Intro -->
+    <img src="../static/profile_516.png" class="profile-img">
+    <h3>I'm Liam Callahan, a computer science student and up-and-coming full-stack engineer.</h3>
+    
+    <!-- Languages -->
+    <h2>Languages</h2>
+    <div class="languages">
+      <span class="language-box">Python</span>
+      <span class="language-box">Java</span>
+      <span class="language-box">C#</span>
+      <span class="language-box">HTML</span>
+      <span class="language-box">CSS</span>
+      <span class="language-box">JavaScript</span>
+    </div>
+
+    <!-- Projects -->
+    <h2>Projects</h2>
+    <div class="expandable">
+      <button class="toggle-button">This Website</button>
+      <div class="content">
+        <p>This website was handcoded in HTML/JavaScript/CSS and Flask in Python.
+           It now runs on Flask & Nginx on a VPS, which I manage.</p>
+      </div>
+    </div>
+
+    <div class="expandable">
+      <button class="toggle-button">Python Blog Migration Tool</button>
+      <div class="content">
+        <p>Developed a program in Python that scraped Weebly Blog content and converted it to
+          WordPress posts via the WordPress REST API. This eliminated ~90% of the repetitive
+          labor needed to transfer the posts</p>
+      </div>
+    </div>
+
+    <h2>Recent Blog Posts</h2>
+    <div class="blog-container">
+      {% for post in posts %}
+      <a class="blog-excerpt" href="/blog/id-{{ post.id }}">
+        <span class="title">{{ post.title }}</span><br>
+        <span>{{ post.date }}</span>
+        <p class="excerpt">{{ post.excerpt }}</p>
+      </a>
+      {% endfor %}
+    </div>
+    <br>
+    <a href="blog-archive/page-1">Read More</a>
+    
+    <div class="particles"></div>
+  </body>
+
+  <script rel="script" src="../static/main.js"></script> 
+</html>

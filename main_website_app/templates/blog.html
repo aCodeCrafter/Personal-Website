@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../static/main.css">
+    <title>Liam Callahan Blog</title>
+  </head>
+  {% include "navbar.html" %}
+  <h1>{{ post.title }}</h1>
+  <h4>By {{ post.author }}<br>{{ post.date }}</h4>
+  <body>
+    {{ post.content }}
+    <br>
+    <div class="particles"></div>
+    <script src="../static/main.js"></script>
+  </body>
+</html>
