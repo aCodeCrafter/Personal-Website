@@ -1,1 +1,2 @@
-webdata.db
+secrets.env
+.venv/

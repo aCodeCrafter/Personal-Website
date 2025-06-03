@@ -1,0 +1,11 @@
+{
+	"nodes":[
+		{"id":"5cd9750da36d9c34","x":-510,"y":-178,"width":250,"height":141,"type":"text","text":"Backend App:\nMake Posts\nSee logs\nView Traffic"},
+		{"id":"6df56747ca3c695e","x":140,"y":-181,"width":250,"height":144,"type":"text","text":"Frontend App:\nSee posts\nSee content\nMake logs"},
+		{"id":"3504fbb529f871d0","x":-160,"y":80,"width":250,"height":120,"type":"text","text":"Database:\nStore Post Data\nStore User Data \nStore logs"}
+	],
+	"edges":[
+		{"id":"51346e9e130214b9","fromNode":"5cd9750da36d9c34","fromSide":"bottom","toNode":"3504fbb529f871d0","toSide":"left","label":"Update User & Post Data\nGet logs"},
+		{"id":"1578753a6147d077","fromNode":"3504fbb529f871d0","fromSide":"right","toNode":"6df56747ca3c695e","toSide":"bottom","label":"Update Logs\nGet post data"}
+	]
+}
