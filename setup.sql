@@ -18,21 +18,26 @@ CREATE TABLE IF NOT EXISTS logs (
     message TEXT                  -- the actual log message
 );
 CREATE TABLE IF NOT EXISTS users (
-    id SERIAL PRIMARY KEY,
+    user_id SERIAL PRIMARY KEY,
     creation_timestamp TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     role VARCHAR(10),              -- user role, e.g. admin
     username VARCHAR(100),         -- username
-    hash VARCHAR(100)             -- password hash
+    hash TEXT             -- password hash
 );
-
+CREATE TABLE IF NOT EXISTS sessions (
+    session_id TEXT PRIMARY KEY,
+    user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE,
+    ip_address TEXT NOT NULL
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    expires_at TIMESTAMPTZ DEFAULT (CURRENT_TIMESTAMP + interval '7 days')
+);
 -- Grant Permissions
 GRANT INSERT ON logs TO frontend;
 GRANT SELECT ON posts TO frontend;
 
 GRANT SELECT, INSERT, DELETE ON logs TO admin_panel;
-GRANT SELECT, INSERT, UPDATE, DELETE ON posts TO admin_panel;
-GRANT SELECT, INSERT, UPDATE, DELETE ON users TO admin_panel;
 GRANT USAGE, UPDATE ON SEQUENCE posts_id_seq TO admin_panel;
+GRANT SELECT, INSERT, UPDATE, DELETE ON posts, users, sessions TO admin_panel;
 
 -- Create indexes for query speed 
 CREATE INDEX ON logs (timestamp);

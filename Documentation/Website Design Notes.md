@@ -24,6 +24,7 @@ Tables:
 	Posts
 	Users
 	Logs
+
 Posts	
 ```
 CREATE TABLE IF NOT EXISTS posts (
@@ -35,16 +36,30 @@ CREATE TABLE IF NOT EXISTS posts (
     content TEXT
     );
 ```    
+
 Users
 ```
 CREATE TABLE IF NOT EXISTS users (
-    id SERIAL PRIMARY KEY,
+    user_id SERIAL PRIMARY KEY,
     creation_timestamp TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     role VARCHAR(10),              -- user role, e.g. admin
     username VARCHAR(100),         -- username
-    hash VARCHAR(100)             -- password hash
+    hash TEXT             -- password hash
 );
 ```
+
+Sessions
+```
+CREATE TABLE IF NOT EXISTS sessions (
+    session_id TEXT PRIMARY KEY,
+    user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE,
+    ip_address TEXT NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    expires_at TIMESTAMPTZ DEFAULT (CURRENT_TIMESTAMP + interval '7 days'),
+    UNIQUE(user_id, ip_address)
+);
+```
+
 Logs
 ```
 CREATE TABLE IF NOT EXISTS logs (
@@ -55,3 +70,10 @@ CREATE TABLE IF NOT EXISTS logs (
     message TEXT                  -- the actual log message
 );
 ```
+]
+
+
+### Session Tokens
+When a user logs into the website an entry is generated in the _Sessions_ table that contains a unique token (the session id and primary key), the user's IP address, the user_id, the session creation date/time, and the session expiration date/time. If the user's user_id and ip_address match an existing record, that record is updated with the new token.
+
+When the user loads a restricted page, the user sends the server their token. The server then checks the token against the sessions table to see which user they are.
