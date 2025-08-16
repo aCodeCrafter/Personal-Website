@@ -1,10 +1,13 @@
 from flask import Flask, render_template, session, request, redirect, url_for
 from datetime import datetime
+from os import environ
+from secrets import token_urlsafe
+from admin_log_handler import get_recent_logs
+from forms import BlogPostForm, LoginForm
+import create_blog_post
 import psycopg
 import dotenv
-from os import environ
 import bcrypt
-from secrets import token_urlsafe
 
 dotenv.load_dotenv(dotenv_path="secrets.env")
 app = Flask(__name__)
@@ -14,17 +17,19 @@ app.secret_key = environ.get("session_secret_key")
 @app.route("/")
 def dashboard():
   if 'token' in session.keys() and isLoggedIn(session['token']):
-    # return render_template("dashboard.html", logs=get_logs(20))
-    return "successfully logged in"
+    return render_template("dashboard.html", logs=get_recent_logs(20))
+    # return "successfully logged in"
   else:
     return redirect(url_for('login'))
 
 @app.route("/login", methods={'GET','POST'})
 def login():
-  error = None
-  if request.method == 'POST':
-    username = request.form['username']
-    password = request.form['password']
+  error = " "
+  form = LoginForm()
+  if form.validate_on_submit(): # Validate submission via flask wtf
+    username = form.username.data
+    password = form.password.data
+    
     ip_address = request.remote_addr
 
     # Check password
@@ -48,7 +53,24 @@ def login():
     else:
       error = 'Invalid username or password.'
     cursor.close()
-  return render_template('login.html', error=error)
+  return render_template('login.html', error=error, form=form)
+
+@app.route("/create_post", methods=["GET", "POST"])
+def create_post():
+  if 'token' in session.keys() and isLoggedIn(session['token']):
+    form = BlogPostForm()
+    if form.validate_on_submit() and 'token' in session.keys() and isLoggedIn(session['token']):  # automatically checks validators
+      success = create_blog_post.create_post(
+          title=form.title.data,
+          author=form.author.data,
+          excerpt=form.excerpt.data,
+          content=form.content.data,
+          timestamp=datetime.combine(form.date.data,form.time.data)
+      )
+      return redirect(url_for("dashboard")) if success else ("Failed", 400)
+    return render_template("create_post.html", form=form)
+  else:
+    return redirect(url_for('login'))
 
 def isLoggedIn(token):
   "Returns true when user has a valid session_token"

@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-    <h1>Logs</h1>
+    <h2>Logs</h1>
     <table>
         <tr>
             <th>Time</th>
@@ -30,5 +30,6 @@
         </tr>
         {% endfor %}
     </table>
+    <h2><a href="{{ url_for('create_post') }}">Create Post</a></h2>
 </body>
 </html>
