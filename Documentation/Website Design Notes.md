@@ -1,5 +1,5 @@
 See also [Website Design thought process](Website_Design_thought_process), and [Canvas](Website%20Design.canvas)
-### Dependancies
+### Dependencies
 PostgreSQL
 gunicorn
 nginx
@@ -77,3 +77,5 @@ CREATE TABLE IF NOT EXISTS logs (
 When a user logs into the website an entry is generated in the _Sessions_ table that contains a unique token (the session id and primary key), the user's IP address, the user_id, the session creation date/time, and the session expiration date/time. If the user's user_id and ip_address match an existing record, that record is updated with the new token.
 
 When the user loads a restricted page, the user sends the server their token. The server then checks the token against the sessions table to see which user they are.
+
+### 

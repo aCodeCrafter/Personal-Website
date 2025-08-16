@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve the Admin Site
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/
+Environment="PATH=/var/www/admin_app/personal_website_env/bin"
+ExecStart=/var/www/admin_app/venv/bin/gunicorn --workers 3 --bind unix:admin_app.sock -m 007 wsgi:app
+
+[Install]
+WantedBy=multi-user.target

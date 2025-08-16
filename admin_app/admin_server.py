@@ -14,7 +14,8 @@ app.secret_key = environ.get("session_secret_key")
 @app.route("/")
 def dashboard():
   if 'token' in session.keys() and isLoggedIn(session['token']):
-    return session["token"] #render_template("dashboard.html", logs=get_logs(20))
+    # return render_template("dashboard.html", logs=get_logs(20))
+    return "successfully logged in"
   else:
     return redirect(url_for('login'))
 
