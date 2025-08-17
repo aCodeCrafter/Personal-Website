@@ -6,7 +6,7 @@ After=network.target
 User=www-data
 Group=www-data
 WorkingDirectory=/var/www/personal_website
-Environment="PATH=/var/www/personal_website/personal_website_env/bin"
-ExecStart=/var/www/personal_website_app/venv/bin/gunicorn --workers 3 --bind unix:personal_website.sock -m 007 wsgi:app
+Environment="PATH=/var/www/personal_website/personal_website_app/.venv/bin"
+ExecStart=/var/www/personal_website/personal_website_app/.venv/bin/gunicorn --workers 3 --bind unix:personal_website.sock -m 007 wsgi:app
 [Install]
 WantedBy=multi-user.target
