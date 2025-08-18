@@ -6,6 +6,39 @@ nginx
 Flask
 psycopg
 dotenv
+
+### Environment
+##### Setup
+1. Clone repo into var/www
+```
+cd /var/www
+git clone https://github.com/aCodeCrafter/Personal-Website.git
+```
+2. Change repo permissions
+```
+cd Personal_Website
+sudo chown -R www-data:www-data .
+sudo chmod -R g+w .
+```
+(Optionally add current user to www-data group for easier manipulation)
+```
+sudo usermod -a -G www-data [your_username]
+newgrp www-data
+```
+3. Move the .service files
+```
+mv personal_website_app/personal_website.service /etc/systemd/system/personal_website.service
+mv admin_app/admin_app.service /etc/systemd/system/admin_app.service
+```
+4. Setup virtual environments
+```
+python3 -m venv personal_website_app/.venv && . personal_website_app/.venv/bin/activate && pip install --upgrade pip && pip install -r personal_website_app/requirements.txt && pip list && deactivate
+python3 -m venv admin_app/.venv && . admin_app/.venv/bin/activate && pip install --upgrade pip && pip install -r admin_app/requirements.txt && pip list && deactivate
+```
+5. Restart systemctl & nginx
+```
+sudo systemctl daemon-reload && sudo systemctl restart personal_website.service && sudo systemctl restart nginx
+```
 ### PostgreSQL
 ##### Setup
 1. In terminal open postgres user: 
@@ -13,7 +46,7 @@ dotenv
 2. Create superuser for DB management:
 ```
 CREATE USER [current user];
-ALTER USER [current user] WITH SUPER USER;
+ALTER USER [current user] WITH SUPERUSER;
 CREATE DATABASE WEBSITE_DB OWNER [current user];
 ```
 3. Update passwords in setup.sql
