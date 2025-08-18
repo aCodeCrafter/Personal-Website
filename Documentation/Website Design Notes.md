@@ -16,7 +16,7 @@ git clone https://github.com/aCodeCrafter/Personal-Website.git
 ```
 2. Change repo permissions
 ```
-cd Personal_Website
+cd personal_website
 sudo chown -R www-data:www-data .
 sudo chmod -R g+w .
 ```
@@ -27,8 +27,8 @@ newgrp www-data
 ```
 3. Move the .service files
 ```
-mv personal_website_app/personal_website.service /etc/systemd/system/personal_website.service
-mv admin_app/admin_app.service /etc/systemd/system/admin_app.service
+sudo mv personal_website_app/personal_website.service /etc/systemd/system/personal_website.service
+sudo mv admin_app/admin_app.service /etc/systemd/system/admin_app.service
 ```
 4. Setup virtual environments
 ```
