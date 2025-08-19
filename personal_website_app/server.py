@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 import psycopg
 import dotenv
+import markdown
 from os import environ
 from datetime import datetime
 
@@ -57,7 +58,7 @@ def getBlogArchives(page, numPerPage):
         "date":row[1].strftime("%b %d, %Y"),
         "title":row[2],
         "author":row[3],
-        "excerpt":row[4]})
+        "excerpt":markdown.markdown(row[4])})
   return output
 
 # Return the contents/metadata for an individual post
@@ -80,6 +81,6 @@ def getBlog(pageId):
         "date":result[1].strftime("%b %d, %Y"),
         "title":result[2],
         "author":result[3],
-        "content":result[4]}
+        "content":markdown.markdown(result[4])}
 if __name__ == "__main__":
   app.run(host="0.0.0.0")

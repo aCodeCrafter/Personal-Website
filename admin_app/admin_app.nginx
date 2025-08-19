@@ -1,0 +1,32 @@
+# New subdomain
+server {
+    server_name admin.acodecrafter.xyz;
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/var/www/personal_website/admin_app/personal_website.sock;  # point to your second app's socket
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    listen 443 ssl;
+    ssl_certificate /etc/letsencrypt/live/admin.acodecrafter.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/admin.acodecrafter.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+}
+
+# Redirect HTTP to HTTPS for subdomain
+server {
+    if ($host = admin.acodecrafter.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name admin.acodecrafter.xyz;
+    return 301 https://$host$request_uri;
+}
