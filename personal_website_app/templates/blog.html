@@ -8,7 +8,7 @@
   <h1>{{ post.title }}</h1>
   <h4>By {{ post.author }}<br>{{ post.date }}</h4>
   <body>
-    {{ post.content|safe }}
+    <div> {{ post.content|safe }} </div>
     <br>
     <div class="particles"></div>
     <script src="../static/main.js"></script>
