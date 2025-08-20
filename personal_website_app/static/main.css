@@ -5,18 +5,28 @@
   --border-weight: 5px;
   font-size: 1em;
 }
-@media (max-width: 735pt) {
-  :root {
-    --main-width: 90%;
-    font-size: 1.6em;
-  }
-}
 
 body {
   text-align: center;
   font-family: 'Courier New', Courier, monospace;
   color: var(--main-fg-color);
   background-color: #000108;
+}
+.post_content {
+  text-align: left;
+  width: var(--main-width);
+  padding-left: 30%;
+}
+@media (max-width: 735pt) {
+  :root {
+    --main-width: 90%;
+    font-size: 1.6em;
+  }
+  .post_content {
+    text-align: left;
+    width: var(--main-width);
+    padding-left: 0em;
+  }
 }
 
 a {
