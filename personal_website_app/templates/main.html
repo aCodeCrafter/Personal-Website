@@ -19,6 +19,7 @@
     <div class="languages">
       <span class="language-box">Python</span>
       <span class="language-box">Java</span>
+      <span class="language-box">SQL</span>
       <span class="language-box">C#</span>
       <span class="language-box">HTML</span>
       <span class="language-box">CSS</span>
@@ -28,22 +29,46 @@
     <!-- Projects -->
     <h2>Projects</h2>
     <div class="expandable">
-      <button class="toggle-button">This Website</button>
+      <button class="toggle-button">Flask Blogging and Administration Engine</button>
       <div class="content">
-        <p>This website was handcoded in HTML/JavaScript/CSS and Flask in Python.
-           It now runs on Flask & Nginx on a VPS, which I manage.</p>
+        <p>For this website I wanted a simple portfolio and blog administration engine that I could use to host a portfolio,
+           and a basic blog engine. So I built my own using Flask and PostGreSQL. All of the code 
+           for this website can be found on <a href="https://github.com/aCodeCrafter/personal_website">my github</a>
+           and a full writeup is on the way.</p>
       </div>
     </div>
 
     <div class="expandable">
       <button class="toggle-button">Python Blog Migration Tool</button>
       <div class="content">
-        <p>Developed a program in Python that scraped Weebly Blog content and converted it to
-          WordPress posts via the WordPress REST API. This eliminated ~90% of the repetitive
-          labor needed to transfer the posts</p>
+        <p>A while back my church wanted to migrate their website from Weebly to Wordpress to reduce unnecessary operating costs.
+          So I built a python tool to scrape the weebly blog archives, convert them to wordpress blog posts, and then submit
+          them to the new website via the WordPress REST API. This one was a bit more difficult because there wasn't much 
+          documentation for the WordPress REST API, but thankfully I was able to reverse engineer it by studying the nework
+          requests made by the browser when submitting new posts.
+        </p>
       </div>
     </div>
-
+    <div class="expandable">
+      <button class="toggle-button">Paper Trading Bot & algorithm tester</button>
+      <div class="content">
+        <p>I got the idea to make a paper trading tool that would backtest different trading algorithms on previous stock price 
+          data, so I made this tool to do just that. It uses the yfinance module to download data from Yahoo Finance, and keeps
+          the stock trading algorithms in seperate plug & play functions so that they can be swapped out at will. The code can
+          be found on <a href="https://github.com/aCodeCrafter/personal_website">my github.</a></p>
+      </div>
+    </div>
+    <div class="expandable">
+      <button class="toggle-button">Company Prospecting Bot </button>
+      <div class="content">
+        <p>This is a project I started in July of 2025, where I attempted to create
+          a bot that scraped the SEC's EDGAR platform for publicly traded companies,
+          and identify ones that are both growing and in technology fields, so I could
+          build prospect lists for interesting companies who may be more likely to hire
+          undergrads.</p>
+      </div>
+    </div>
+    
     <h2>Recent Blog Posts</h2>
     <div class="blog-container">
       {% for post in posts %}

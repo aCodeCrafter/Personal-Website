@@ -57,8 +57,9 @@ h4 {
 }
 
 .languages {
-  display: flex;
+  display: flex wrap;
   gap: 1em;
+  line-height: 4em;
   justify-content: center;
 }
 
@@ -84,7 +85,8 @@ h4 {
 
 .expandable .content.visible {
   opacity: 1;
-  height: 6em;
+  /* height: 8em; */
+  height: min-content;
 }
 
 .toggle-button {
